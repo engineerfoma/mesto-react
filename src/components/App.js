@@ -112,19 +112,6 @@ function App() {
             <ImagePopup 
             card={selectedCard} 
             onClose={closeAllPopups}/>
-            {/* <template className="template">
-                <li className="list-element pointer">
-                    <img className="list-element__picture" />
-                    <button type="button" className="list-element__trash hover"></button>
-                    <div className="list-element__header">
-                        <h2 className="list-element__title"></h2>
-                        <div className="list-element__container">
-                            <button type="button" className="list-element__like"></button>
-                            <span className="list-element__counter-likes"></span>
-                        </div>
-                    </div>
-                </li>
-            </template> */}
         </div>
     );
 }
