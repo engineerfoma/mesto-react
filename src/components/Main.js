@@ -1,4 +1,4 @@
-import api from '../utils/Api.js';
+import api from '../utils/api.js';
 import React from 'react';
 import Card from './Card.js';
 
@@ -17,9 +17,6 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
                 setUserAvatar(res.avatar);
             })
             .catch(err => console.log(`Ошибка: ${err}`));
-    })
-
-    React.useEffect(() => {
         api.getCards()
             .then(res => {
                 setCards(res);

@@ -1,5 +1,4 @@
 import React from 'react';
-import '../index.css';
 import Header from './Header';
 import Main from './Main.js';
 import Footer from './Footer.js';
@@ -38,14 +37,19 @@ function App() {
     return (
         <div className="page">
             <Header />
-            <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatar} onCardClick={handleCardClick}/>
+            <Main 
+                onEditProfile={handleEditProfileClick} 
+                onAddPlace={handleAddPlaceClick} 
+                onEditAvatar={handleEditAvatar} 
+                onCardClick={handleCardClick} 
+            />
             <Footer />
             <PopupWithForm title="Редактировать профиль" name="profile" buttonName="Сохранить" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
-                <div className="popup__container">
+                <div className="popup__form_item">
                     <input
                         type="text"
                         id="name-input"
-                        name="field_name"
+                        name="fieldName"
                         placeholder="Имя"
                         className="popup__input popup__input_type_name"
                         required
@@ -54,11 +58,11 @@ function App() {
                     />
                     <span className="popup__error popup__error_visible name-input-error"></span>
                 </div>
-                <div className="popup__container">
+                <div className="popup__form_item">
                     <input
                         type="text"
                         id="about-me-input"
-                        name="field_about_me"
+                        name="fieldAboutMe"
                         placeholder="О себе"
                         className="popup__input popup__input_type_about-me"
                         required
@@ -70,11 +74,11 @@ function App() {
             </PopupWithForm>
 
             <PopupWithForm title="Новое место" name="add-card" buttonName="Создать" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
-                <div className="popup__container">
+                <div className="popup__form_item">
                     <input
                         type="text"
                         id="title-input"
-                        name="field_title"
+                        name="fieldTitle"
                         placeholder="Название"
                         className="popup__input popup__input_title"
                         required
@@ -83,11 +87,11 @@ function App() {
                     />
                     <span className="popup__error popup__error_visible title-input-error"></span>
                 </div>
-                <div className="popup__container">
+                <div className="popup__form_item">
                     <input
                         type="url"
                         id="link-input"
-                        name="field_source"
+                        name="fieldSource"
                         placeholder="Ссылка на картинку"
                         className="popup__input popup__input_source"
                         required
@@ -96,22 +100,20 @@ function App() {
                 </div>
             </PopupWithForm>
 
-            <PopupWithForm title="Вы уверены?" name="confirm" buttonName="Да" onClose={closeAllPopups}/>
+            <PopupWithForm title="Вы уверены?" name="confirm" buttonName="Да" onClose={closeAllPopups} />
 
             <PopupWithForm title="Обновить аватар" name="avatar" buttonName="Сохранить" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
                 <input
                     type="url"
                     id="avatar-input"
-                    name="field_avatar"
+                    name="fieldAvatar"
                     placeholder="ссылка на аватар"
                     className="popup__input popup__input_source-avatar"
                     required
                 />
                 <span className="popup__error popup__error_avatar avatar-input-error"></span>
             </PopupWithForm>
-            <ImagePopup 
-            card={selectedCard} 
-            onClose={closeAllPopups}/>
+            <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         </div>
     );
 }

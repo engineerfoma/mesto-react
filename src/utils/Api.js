@@ -16,10 +16,10 @@ class Api {
             .then(this._checkResponse);
     }
 
-    setUserInfo({ field_name, field_about_me }) {
+    setUserInfo({ fieldName, fieldAboutMe }) {
         const body = {
-            name: field_name,
-            about: field_about_me
+            name: fieldName,
+            about: fieldAboutMe
         };
         return fetch(`${this._url}users/me`, {
             method: 'PATCH',
@@ -53,10 +53,10 @@ class Api {
             .then(this._checkResponse);
     }
     
-    addCard({ field_title, field_source }) {
+    addCard({ fieldTitle, fieldSource }) {
         const body = {
-            name: field_title,
-            link: field_source
+            name: fieldTitle,
+            link: fieldSource
         }; 
         return fetch(`${this._url}cards`, {
             headers: this._headers,
