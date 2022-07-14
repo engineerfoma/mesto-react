@@ -19,4 +19,4 @@
 Доработать изменение личных данных, возмонжноть ставить лайки, добавлять и удалять новые фото 
 
 ### Ссылка на сайт:
-https://engineerfoma.github.io/mesto/
+https://engineerfoma.github.io/mesto-react/
