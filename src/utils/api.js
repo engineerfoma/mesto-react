@@ -68,7 +68,7 @@ class Api {
 
     setAvatar(url) {
         const body = {
-            avatar: url
+            avatar: url.avatar
         }
         return fetch(`${this._url}users/me/avatar`, {
             method: 'PATCH',

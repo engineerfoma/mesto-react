@@ -7,6 +7,7 @@ import Footer from './Footer.js';
 import PopupWithForm from './PopupWithForm.js';
 import ImagePopup from './ImagePopup.js';
 import EditProfilePopups from './EditProfilePopups.js';
+import EditAvatarPopups from './EditAvatarPopups.js';
 
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -40,7 +41,16 @@ function App() {
     }
 
     function handleUpdateUser(data) {
-        api.setUserInfo(data) 
+        api.setUserInfo(data)
+            .then(res => {
+                setCurrentUser(res);
+                closeAllPopups();
+            })
+            .catch(err => console.log(`Ошибка: ${err}`));
+    }
+
+    function handleUpdateAvatar({ avatar }) {
+        api.setAvatar({ avatar })
             .then(res => {
                 setCurrentUser(res);
                 closeAllPopups();
@@ -93,8 +103,17 @@ function App() {
                     onCardDelete={handleCardDelete}
                 />
                 <Footer />
-                <EditProfilePopups isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
-                <PopupWithForm title="Новое место" name="add-card" buttonName="Создать" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
+                <EditProfilePopups
+                    isOpen={isEditProfilePopupOpen}
+                    onClose={closeAllPopups}
+                    onUpdateUser={handleUpdateUser}
+                />
+                <PopupWithForm
+                    title="Новое место"
+                    name="add-card"
+                    buttonName="Создать"
+                    isOpen={isAddPlacePopupOpen}
+                    onClose={closeAllPopups}>
                     <div className="popup__form_item">
                         <input
                             type="text"
@@ -106,7 +125,8 @@ function App() {
                             minLength="2"
                             maxLength="30"
                         />
-                        <span className="popup__error popup__error_visible title-input-error"></span>
+                        <span className="popup__error popup__error_visible title-input-error">
+                        </span>
                     </div>
                     <div className="popup__form_item">
                         <input
@@ -120,21 +140,21 @@ function App() {
                         <span className="popup__error link-input-error"></span>
                     </div>
                 </PopupWithForm>
-
-                <PopupWithForm title="Вы уверены?" name="confirm" buttonName="Да" onClose={closeAllPopups} />
-
-                <PopupWithForm title="Обновить аватар" name="avatar" buttonName="Сохранить" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
-                    <input
-                        type="url"
-                        id="avatar-input"
-                        name="fieldAvatar"
-                        placeholder="ссылка на аватар"
-                        className="popup__input popup__input_source-avatar"
-                        required
-                    />
-                    <span className="popup__error popup__error_avatar avatar-input-error"></span>
-                </PopupWithForm>
-                <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+                <PopupWithForm
+                    title="Вы уверены?"
+                    name="confirm"
+                    buttonName="Да"
+                    onClose={closeAllPopups}
+                />
+                <EditAvatarPopups
+                    isOpen={isEditAvatarPopupOpen}
+                    onClose={closeAllPopups}
+                    onUpdateAvatar={handleUpdateAvatar}
+                />
+                <ImagePopup
+                    card={selectedCard}
+                    onClose={closeAllPopups}
+                />
             </div>
         </currentUserContext.Provider>
     );
