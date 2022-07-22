@@ -28,7 +28,7 @@ class Api {
         })
             .then(this._checkResponse);
     }
-    
+
     getCards() {
         return fetch(`${this._url}cards`, {
             method: 'GET',
@@ -37,27 +37,19 @@ class Api {
             .then(this._checkResponse);
     }
 
-    addLike(card) {
-        return fetch(`${this._url}cards/${card._id}/likes`, {
-            method: 'PUT',
-            headers: this._headers
+    changeLikeCardStatus(cardId, like) {
+        return fetch(`${this._url}cards/${cardId}/likes`, {
+            method: like ? 'PUT' : 'DELETE',
+            headers: this._headers,
         })
             .then(this._checkResponse);
     }
 
-    deleteLike(card) {
-        return fetch(`${this._url}cards/${card._id}/likes`, {
-            method: 'DELETE',
-            headers: this._headers
-        })
-            .then(this._checkResponse);
-    }
-    
     addCard({ fieldTitle, fieldSource }) {
         const body = {
             name: fieldTitle,
             link: fieldSource
-        }; 
+        };
         return fetch(`${this._url}cards`, {
             headers: this._headers,
             method: 'POST',
@@ -65,7 +57,7 @@ class Api {
         })
             .then(this._checkResponse);
     }
-    
+
     deleteCard(cardId) {
         return fetch(`${this._url}cards/${cardId}`, {
             method: 'DELETE',
@@ -74,7 +66,7 @@ class Api {
             .then(this._checkResponse);
     }
 
-    setAvatar (url) {
+    setAvatar(url) {
         const body = {
             avatar: url
         }
@@ -94,5 +86,5 @@ class Api {
     }
 }
 
- const api = new Api('https://mesto.nomoreparties.co/v1/cohort-43/', 'b95d65c3-3fd9-4b99-9ec8-1daeaeb60353'); 
- export default api;
+const api = new Api('https://mesto.nomoreparties.co/v1/cohort-43/', 'b95d65c3-3fd9-4b99-9ec8-1daeaeb60353');
+export default api;

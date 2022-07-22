@@ -1,5 +1,5 @@
-.list-element__trash {
-    background: url(../../../images/Trash.svg) no-repeat 50% 50%;
+.list-element__trash_visible {
+    background: url(../../../../images/Trash.svg) no-repeat 50% 50%;
     border: none;
     position: absolute;
     top: 20px;
