@@ -39,12 +39,12 @@ function App() {
         setSelectedCard(card);
     }
 
-    function handleUpdateUser({ name, about }) {
-        api.setUserInfo({ name, about }) 
+    function handleUpdateUser(data) {
+        api.setUserInfo(data) 
             .then(res => {
                 setCurrentUser(res);
                 closeAllPopups();
-                })
+            })
             .catch(err => console.log(`Ошибка: ${err}`));
     }
 

@@ -16,10 +16,10 @@ class Api {
             .then(this._checkResponse);
     }
 
-    setUserInfo({ fieldName, fieldAboutMe }) {
+    setUserInfo(data) {
         const body = {
-            name: fieldName,
-            about: fieldAboutMe
+            name: data.name,
+            about: data.about
         };
         return fetch(`${this._url}users/me`, {
             method: 'PATCH',
