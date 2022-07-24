@@ -1,18 +1,19 @@
 .header {
-    width: 1120px;
+    width: 100%;
     min-height: 72px;
-    padding: 45px 200px 0;
-    margin-bottom: 40px;
+    padding: 45px 200px 41px;
+    margin:0 auto 40px;
     display: flex;
     justify-content: flex-start;
     position: relative;
     border-bottom: 1px solid rgba(33%, 33%, 33%, .7);
+    box-sizing: border-box;
 }
 
 @media (max-width: 1279px) {
     .header {
         max-width: 100%;
-        padding: 45px 120px 0;
+        padding: 45px 120px 35px;
         margin-bottom: 40px;
     }
 }
@@ -27,7 +28,7 @@
 
 @media (max-width: 767px) {
     .header {
-        padding: 28px 0 0 27px;
+        padding: 28px 0 31px 27px;
         margin-bottom: 42px;
     }
 }

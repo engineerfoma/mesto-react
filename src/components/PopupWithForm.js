@@ -1,7 +1,7 @@
-function PopupWithForm({ title, name, buttonName, children, isOpen, onClose, handleSubmit }) {
+function PopupWithForm({ title, name, buttonName, children, isOpen, onClose, handleSubmit, onOverlayClick }) {
 
     return (
-        <div className={`popup popup_${name} ${isOpen ? 'popup_opened' : ''}`}>
+        <div className={`popup popup_${name} ${isOpen ? 'popup_opened' : ''}`} onClick={onOverlayClick}>
             <div className="popup__content popup__content_form">
                 <button type="button" className="popup__close hover" onClick={onClose}></button>
                 <h3 className="popup__title">{title}</h3>

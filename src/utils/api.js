@@ -45,10 +45,10 @@ class Api {
             .then(this._checkResponse);
     }
 
-    addCard({ fieldTitle, fieldSource }) {
+    addCard(data) {
         const body = {
-            name: fieldTitle,
-            link: fieldSource
+            name: data.title,
+            link: data.link
         };
         return fetch(`${this._url}cards`, {
             headers: this._headers,
@@ -66,9 +66,9 @@ class Api {
             .then(this._checkResponse);
     }
 
-    setAvatar(url) {
+    setAvatar(data) {
         const body = {
-            avatar: url.avatar
+            avatar: data.avatar
         }
         return fetch(`${this._url}users/me/avatar`, {
             method: 'PATCH',

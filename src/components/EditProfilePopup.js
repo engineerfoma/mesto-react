@@ -2,17 +2,17 @@ import React from 'react';
 import { currentUserContext } from '../contexts/CurrentUserContext.js';
 import PopupWithForm from './PopupWithForm';
 
-function EditProfilePopups({ isOpen, onClose, onUpdateUser }) {
+function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading, onOverlayClick }) {
     const currentUser = React.useContext(currentUserContext);
-    const [ name, setName ] = React.useState('');
-    const [ description, setDescription ] = React.useState('');
+    const [name, setName] = React.useState('');
+    const [description, setDescription] = React.useState('');
 
     React.useEffect(() => {
         if (currentUser) {
-        setName(currentUser.name);
-        setDescription(currentUser.about);
+            setName(currentUser.name);
+            setDescription(currentUser.about);
         }
-    }, [currentUser]);
+    }, [currentUser, isOpen]);
 
     function handleChangeName(e) {
         setName(e.target.value);
@@ -32,7 +32,15 @@ function EditProfilePopups({ isOpen, onClose, onUpdateUser }) {
     }
 
     return (
-        <PopupWithForm title="Редактировать профиль" name="profile" buttonName="Сохранить" isOpen={isOpen} onClose={onClose} handleSubmit={handleSubmit}>
+        <PopupWithForm
+            title="Редактировать профиль"
+            name="profile"
+            buttonName={!isLoading ? 'Сохранить' : 'Сохранение...'}
+            isOpen={isOpen}
+            onClose={onClose}
+            handleSubmit={handleSubmit}
+            onOverlayClick={onOverlayClick}
+        >
             <div className="popup__form_item">
                 <input
                     type="text"
@@ -46,7 +54,8 @@ function EditProfilePopups({ isOpen, onClose, onUpdateUser }) {
                     minLength="2"
                     maxLength="40"
                 />
-                <span className="popup__error popup__error_visible name-input-error"></span>
+                <span className="popup__error popup__error_visible name-input-error">
+                </span>
             </div>
             <div className="popup__form_item">
                 <input
@@ -61,10 +70,11 @@ function EditProfilePopups({ isOpen, onClose, onUpdateUser }) {
                     minLength="2"
                     maxLength="200"
                 />
-                <span className="popup__error popup__error_visible about-me-input-error"></span>
+                <span className="popup__error popup__error_visible about-me-input-error">
+                </span>
             </div>
         </PopupWithForm>
     )
 }
 
-export default EditProfilePopups;
+export default EditProfilePopup;
