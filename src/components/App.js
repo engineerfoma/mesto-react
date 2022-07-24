@@ -37,20 +37,23 @@ function App() {
     }
 
     function handleOverlayClick(e) {
-        if (e.target === e.currentTarget) {
+        if(e.target === e.currentTarget) {
             closeAllPopups();
         }
     }
 
     React.useEffect(() => {
         function handleEscClose(e) {
-            if (e.key === 'Escape') {
+            if(e.key === 'Escape') {
                 closeAllPopups();
             }
         }
-        openedPopup ?
-            document.addEventListener('keydown', handleEscClose) :
-            document.removeEventListener('keydown', handleEscClose);
+
+        if(openedPopup) {
+            document.addEventListener('keydown', handleEscClose);
+            return () => document.removeEventListener('keydown', handleEscClose);
+        }
+
     }, [openedPopup])
 
     function handleEditAvatar() {

@@ -11,7 +11,7 @@
     list-style: none;
 }
 
-@media (max-width: 897px) {
+@media (max-width: 879px) {
     .list {
         width: 100%;
     }

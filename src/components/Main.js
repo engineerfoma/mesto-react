@@ -20,8 +20,15 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onC
                 <button type="button" className="profile__add-button hover" onClick={onAddPlace}></button>
             </section>
             <ul className="list">
-                {cards.map((item, i) => {
-                    return <Card card={item} key={i} onCardClick={onCardClick} onCardLike={onCardLike} onTrashClick={onTrashClick} />
+                {cards.map((item) => {
+                    return (
+                        <Card
+                            card={item}
+                            key={item._id}
+                            onCardClick={onCardClick}
+                            onCardLike={onCardLike}
+                            onTrashClick={onTrashClick}
+                        />)
                 })}
             </ul>
         </main>
